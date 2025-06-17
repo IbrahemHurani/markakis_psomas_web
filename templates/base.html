@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fair Allocation Algorithm - Markakis & Psomas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>On Worst-Case Allocations in the Presence of Indivisible Goods</h1>
+        <p>by Evangelos Markakis and Christos-Alexandros Psomas (2011)</p>
+    </header>
+    
+    <nav>
+        <a href="{{ url_for('index') }}" class="btn"><i class="fas fa-home"></i> Home</a>
+        <a href="{{ url_for('input_page') }}" class="btn"><i class="fas fa-calculator"></i> Allocate</a>
+        <a href="{{ url_for('about') }}" class="btn"><i class="fas fa-info-circle"></i> About</a>
+    </nav>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>© {{ now.year }} - Fair Division Research Group</p>
+    </footer>
+</body>
+</html>

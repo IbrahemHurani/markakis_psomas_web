@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>About This Implementation</h2>
+    <p>
+        This website demonstrates the fair allocation algorithm described in:
+        <strong>"On Worst-Case Allocations in the Presence of Indivisible Goods"</strong>
+        by Evangelos Markakis and Christos-Alexandros Psomas (2011).
+    </p>
+    
+    <p>
+        The implementation guarantees that each agent receives a bundle worth at least V<sub>n</sub>(α<sub>i</sub>),
+        where α<sub>i</sub> is the fraction of the agent's total value represented by their most valuable item.
+    </p>
+    
+    <a href="http://pages.cs.aueb.gr/~markakis/research/wine11-Vn.pdf" target="_blank" class="btn">
+        <i class="fas fa-file-pdf"></i> View Original Paper
+    </a>
+</div>
+
+<div class="card">
+    <h2>About the Developer</h2>
+    <div class="developer-info">
+        <img src="https://via.placeholder.com/150" alt="Developer Photo" class="developer-photo">
+        <div>
+            <h3>Ibrahem Hurani</h3>
+            <p>Computer Science Student</p>
+            <p>University of Ariel</p>
+            
+            <p>
+                <i class="fas fa-envelope"></i> abrahem_horani@hotmail.com<br>
+                <i class="fab fa-github"></i> https://github.com/IbrahemHurani<br>
+                
+            </p>
+            
+            <p>
+                I specialize in algorithms for fair division and computational social choice.
+                This implementation was developed as part of my research in course algorithms research.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Technical Details</h2>
+    <ul>
+        <li><strong>Framework:</strong> Flask (Python)</li>
+        <li><strong>Algorithm:</strong> Markakis-Psomas (2011)</li>
+        <li><strong>Dependencies:</strong> Flask, NumPy</li>
+        <li><strong>Source Code:</strong> <a href="#">GitHub Repository</a></li>
+        <li><strong>License:</strong> MIT</li>
+    </ul>
+</div>
+{% endblock %}

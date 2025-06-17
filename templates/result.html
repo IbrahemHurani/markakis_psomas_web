@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Allocation Results</h2>
+
+    {% for result in results %}
+    <div class="card">
+        <h3 class="agent-color-{{ loop.index0 }}">{{ result.agent }}</h3>
+        <p><strong>Total Value:</strong> {{ result.value }}</p>
+
+        <ul>
+            {% for item, val in result.value_details %}
+            <li>
+                <span class="item-badge">{{ item }}</span> → value: {{ val }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <h2>Valuation Matrix</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Item \ Agent</th>
+                {% for agent in valuations %}
+                <th>{{ agent }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% set first_agent = valuations | first %}
+            {% for item in valuations[first_agent].keys() %}
+            <tr>
+                <td>{{ item }}</td>
+                {% for agent in valuations %}
+                <td>{{ valuations[agent][item] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>Logs</h2>
+    <div class="console">
+        {% for entry in logs %}
+        <div class="log-entry">{{ entry }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

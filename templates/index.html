@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>About the Algorithm</h2>
+    <p>This algorithm implements the fair allocation method proposed by Markakis and Psomas in their 2011 paper:</p>
+    
+    <blockquote>
+        "On Worst-Case Allocations in the Presence of Indivisible Goods"
+        <footer>Markakis, E., & Psomas, C. A. (2011)</footer>
+    </blockquote>
+    
+    <p>The algorithm guarantees that each agent receives a bundle worth at least V<sub>n</sub>(α<sub>i</sub>), 
+    where α<sub>i</sub> is the value of the most valuable item to the agent relative to their total value of all items.</p>
+    
+    <a href="http://pages.cs.aueb.gr/~markakis/research/wine11-Vn.pdf" target="_blank" class="btn">
+        <i class="fas fa-file-pdf"></i> Read the Paper
+    </a>
+</div>
+
+<div class="card">
+    <h2>How It Works</h2>
+    <ol>
+        <li>For each agent, compute α<sub>i</sub> (largest item value / total value)</li>
+        <li>Calculate V<sub>n</sub>(α<sub>i</sub>) using the formula from the paper</li>
+        <li>Allocate items incrementally until one agent meets their threshold</li>
+        <li>Assign the bundle to that agent</li>
+        <li>Normalize the valuations of remaining agents for remaining items</li>
+        <li>Recursively allocate remaining items to remaining agents</li>
+    </ol>
+    
+    <a href="{{ url_for('input_page') }}" class="btn btn-success">
+        <i class="fas fa-play"></i> Try It Now
+    </a>
+</div>
+
+<div class="card">
+    <h2>Key Features</h2>
+    <ul>
+        <li>Guarantees proportional allocation</li>
+        <li>Handles indivisible goods</li>
+        <li>Works with asymmetric valuations</li>
+        <li>Efficient implementation</li>
+        <li>Detailed logging for transparency</li>
+    </ul>
+</div>
+{% endblock %}
