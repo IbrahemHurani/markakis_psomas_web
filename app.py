@@ -19,40 +19,6 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/input', methods=['GET', 'POST'])
-def input_page():
-    if request.method == 'POST':
-        try:
-            agents = request.form.getlist('agent[]')
-            items = request.form.getlist('item[]')
-
-            if not agents or not items:
-                return render_template('input.html', error="Please provide at least one agent and one item")
-
-            valuations = {}
-            for agent in agents:
-                valuations[agent] = {}
-                for item in items:
-                    val_str = request.form.get(f"{agent}_{item}", "0")
-                    try:
-                        val = float(val_str)
-                        if val < 0:
-                            return render_template('input.html', error=f"Negative value for {agent}'s {item}")
-                        valuations[agent][item] = val
-                    except ValueError:
-                        return render_template('input.html', error=f"Invalid number for {agent}'s {item}")
-
-            total_values = sum(sum(vals.values()) for vals in valuations.values())
-            if total_values <= 0:
-                return render_template('input.html', error="Total value must be positive")
-
-            session['valuations'] = valuations
-            return redirect(url_for('result'))
-
-        except Exception as e:
-            return render_template('input.html', error=f"Error processing input: {str(e)}")
-
-    return render_template('input.html')
 
 @app.route('/random_input', methods=['GET', 'POST'])
 def random_input_page():

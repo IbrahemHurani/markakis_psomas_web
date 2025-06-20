@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="card">
-    <h2>צור דוגמה אקראית מותאמת</h2>
+    <h2>Random Example</h2>
 
     {% if error %}
         <div class="error-box">
@@ -12,18 +12,18 @@
 
     <form method="POST" action="{{ url_for('random_input_page') }}">
         <div class="form-group">
-            <label for="num_agents">מספר שחקנים:</label>
+            <label for="num_agents">Number of Agent:</label>
             <input type="number" min="2" max="10" name="num_agents" id="num_agents" required class="form-control">
         </div>
         <div class="form-group">
-            <label for="num_items">מספר חפצים:</label>
+            <label for="num_items">Number of items:</label>
             <input type="number" min="2" max="20" name="num_items" id="num_items" required class="form-control">
         </div>
         <button type="submit" class="btn btn-success">
             <i class="fas fa-random"></i> צור דוגמה
         </button>
         <a href="{{ url_for('index') }}" class="btn btn-danger">
-            <i class="fas fa-arrow-left"></i> חזרה לדף הבית
+            <i class="fas fa-arrow-left"></i> return Home
         </a>
     </form>
 </div>
