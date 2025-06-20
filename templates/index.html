@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <div class="card">
     <h2>About the Algorithm</h2>
     <p>This algorithm implements the fair allocation method proposed by Markakis and Psomas in their 2011 paper:</p>
@@ -41,3 +44,10 @@
         <li>Detailed logging for transparency</li>
     </ul>
 </div>
+
+<div class="card">
+    <h2>Generate Custom Random Input</h2>
+    <p>You can generate a random example of your own size.</p>
+    <a href="{{ url_for('random_input_page') }}" class="btn btn-primary">צור קלט אקראי מותאם</a>
+</div>
+{% endblock %}

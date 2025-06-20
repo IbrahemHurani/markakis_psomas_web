@@ -58,13 +58,24 @@ def input_page():
 def random_input_page():
     return render_template('random_input.html')
 
+@app.route('/random_input')
+def random_input_page():
+    return render_template('random_input.html')
+
+
 @app.route('/random')
 def random_example():
     try:
-        # מקבל את הקלט מהמשתמש או מגריל
-        num_agents = int(request.args.get("num_agents", random.randint(2, 8)))
-        num_items = int(request.args.get("num_items", random.randint(3, 8)))
+        # קבלת פרמטרים מהטופס (GET)
+        num_agents = int(request.args.get('num_agents', 3))
+        num_items = int(request.args.get('num_items', 5))
 
+        # בדיקות גבול
+        num_agents = max(2, min(num_agents, 8))
+        num_items = max(3, min(num_items, 8))
+
+        # יצירת סוכנים וחפצים אקראיים
+        import random, string
         agents = [string.ascii_uppercase[i] for i in range(num_agents)]
         items = [str(i + 1) for i in range(num_items)]
 
@@ -77,8 +88,7 @@ def random_example():
         return redirect(url_for('result'))
 
     except Exception as e:
-        return render_template('error.html', error_message=f"שגיאה בקלט: {str(e)}")
-
+        return render_template('error.html', error_message=f"שגיאה ביצירת דוגמה אקראית: {e}")
 
 
 if __name__ == '__main__':
