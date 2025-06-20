@@ -54,51 +54,32 @@ def input_page():
             return render_template('input.html', error=f"Error processing input: {str(e)}")
 
     return render_template('input.html')
+@app.route('/random_input')
+def random_input_page():
+    return render_template('random_input.html')
 
 @app.route('/random')
 def random_example():
-    num_agents = random.randint(2, 8)
-    num_items = random.randint(3, 8)
-
-    agents = [string.ascii_uppercase[i] for i in range(num_agents)]  # ['A', 'B', 'C', ...]
-    items = [str(i + 1) for i in range(num_items)]                   # ['1', '2', '3', ...]
-
-    valuations = {
-        agent: {item: random.randint(1, 15) for item in items}
-        for agent in agents
-    }
-
-    session['valuations'] = valuations
-    return redirect(url_for('result'))
-
-@app.route('/result')
-def result():
     try:
-        valuations = session.get('valuations', {
-            "A": {"1": 50, "2": 30, "3": 20},
-            "B": {"1": 30, "2": 40, "3": 30}
-        })
+        # מקבל את הקלט מהמשתמש או מגריל
+        num_agents = int(request.args.get("num_agents", random.randint(2, 8)))
+        num_items = int(request.args.get("num_items", random.randint(3, 8)))
 
-        allocation, values, logs = run_algorithm(valuations)
+        agents = [string.ascii_uppercase[i] for i in range(num_agents)]
+        items = [str(i + 1) for i in range(num_items)]
 
-        results = []
-        for agent, items in allocation.items():
-            results.append({
-                'agent': agent,
-                'items': items,
-                'value': values[agent],
-                'value_details': [(item, valuations[agent][item]) for item in items]
-            })
+        valuations = {
+            agent: {item: random.randint(1, 15) for item in items}
+            for agent in agents
+        }
 
-        return render_template('result.html',
-                               results=results,
-                               valuations=valuations,
-                               logs=logs)
+        session['valuations'] = valuations
+        return redirect(url_for('result'))
 
     except Exception as e:
-        app.logger.error(f"Error in algorithm: {str(e)}")
-        return render_template('error.html', error_message=str(e))
+        return render_template('error.html', error_message=f"שגיאה בקלט: {str(e)}")
+
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=7777)

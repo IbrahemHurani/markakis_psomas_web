@@ -1,0 +1,14 @@
+
+<h2>צור דוגמה אקראית לפי בחירה</h2>
+<form action="{{ url_for('random_example') }}" method="get">
+    <div class="form-group">
+        <label>מספר סוכנים (2–8):</label>
+        <input type="number" name="num_agents" min="2" max="8" value="3" required class="form-control">
+    </div>
+    <div class="form-group">
+        <label>מספר חפצים (3–8):</label>
+        <input type="number" name="num_items" min="3" max="8" value="5" required class="form-control">
+    </div>
+    <button type="submit" class="btn">צור דוגמה</button>
+</form>
+
