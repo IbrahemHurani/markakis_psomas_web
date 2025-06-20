@@ -28,9 +28,8 @@
         <li>Normalize the valuations of remaining agents for remaining items</li>
         <li>Recursively allocate remaining items to remaining agents</li>
     </ol>
-    
-    <a href="{{ url_for('input_page') }}" class="btn btn-success">
-        <i class="fas fa-play"></i> Try It Now
+    <a href="{{ url_for('random_input_page') }}" class="btn btn-primary">Try It Now</a>
+
     </a>
 </div>
 
@@ -43,11 +42,5 @@
         <li>Efficient implementation</li>
         <li>Detailed logging for transparency</li>
     </ul>
-</div>
-
-<div class="card">
-    <h2>Generate Custom Random Input</h2>
-    <p>You can generate a random example of your own size.</p>
-    <a href="{{ url_for('random_input_page') }}" class="btn btn-primary">צור קלט אקראי מותאם</a>
 </div>
 {% endblock %}
