@@ -105,9 +105,10 @@ def result():
             })
 
         return render_template('result.html',
-                               results=results,
-                               valuations=valuations,
-                               logs=logs)
+                       results=results,
+                       valuations=valuations,
+                       logs=logs,
+                       back_url=url_for('random_input_page'))
 
     except Exception as e:
         app.logger.error(f"Error in algorithm: {str(e)}")
