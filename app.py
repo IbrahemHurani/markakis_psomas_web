@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
 from algorithm import run_algorithm
 import random
-import string
-
+from flask import flash
 app = Flask(__name__, static_folder='static')
 app.secret_key = 'supersecretkey'
 
