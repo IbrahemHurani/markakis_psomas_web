@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="alert alert-warning">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
 <div class="card">
     <h2>Preview Random Example</h2>
     <p>Here is a randomly generated input. If you're satisfied, you can run the algorithm. Otherwise, you may generate a new one.</p>

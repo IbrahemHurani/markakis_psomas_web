@@ -88,10 +88,11 @@ def run_random_input():
 @app.route('/result')
 def result():
     try:
-        valuations = session.get('valuations', {
-            "A": {"1": 50, "2": 30, "3": 20},
-            "B": {"1": 30, "2": 40, "3": 30}
-        })
+        if 'valuations' not in session:
+            flash("The session has expired. Please try again.")
+            return redirect(url_for('random_input_page'))
+
+        valuations = session['valuations']  # בטוח קיים עכשיו
 
         allocation, values, logs = run_algorithm(valuations)
 
