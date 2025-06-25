@@ -1,29 +1,36 @@
 {% extends "base.html" %}
-
 {% block content %}
 <div class="card">
-    <h2>Random Example</h2>
+    <h2>Preview Random Example</h2>
+    <p>Here is a randomly generated input. If you're satisfied, you can run the algorithm. Otherwise, you may generate a new one.</p>
 
-    {% if error %}
-        <div class="error-box">
-            {{ error }}
-        </div>
-    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Item \ Agent</th>
+                {% for agent in agents %}
+                    <th>{{ agent }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item }}</td>
+                    {% for agent in agents %}
+                        <td>{{ valuations[agent][item] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <form method="POST" action="{{ url_for('random_input_page') }}">
-        <div class="form-group">
-            <label for="num_agents">Number of Agent:</label>
-            <input type="number" min="2" max="10" name="num_agents" id="num_agents" required class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="num_items">Number of items:</label>
-            <input type="number" min="2" max="20" name="num_items" id="num_items" required class="form-control">
-        </div>
+    <form method="post" action="{{ url_for('run_random_input') }}">
         <button type="submit" class="btn btn-success">
-            <i class="fas fa-random"></i> Run Example
+            <i class="fas fa-play"></i> Run Algorithm
         </button>
-        <a href="{{ url_for('index') }}" class="btn btn-danger">
-            <i class="fas fa-arrow-left"> </i>  Return Home
+        <a href="{{ url_for('random_input_page') }}" class="btn btn-warning">
+            <i class="fas fa-sync-alt"></i> New Example
         </a>
     </form>
 </div>

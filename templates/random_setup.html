@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Create Custom Random Input</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="agents_count">Number of Agents:</label>
+            <input type="number" name="agents_count" id="agents_count" min="2" value="2" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="items_count">Number of Items:</label>
+            <input type="number" name="items_count" id="items_count" min="2" value="3" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-dice"></i> Generate Example
+        </button>
+    </form>
+</div>
+{% endblock %}

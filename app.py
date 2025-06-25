@@ -54,32 +54,37 @@ def input_page():
 
     return render_template('input.html')
 
-@app.route('/random_input', methods=['GET', 'POST'])
+@app.route('/random', methods=['GET', 'POST'])
 def random_input_page():
     if request.method == 'POST':
-        try:
-            num_agents = int(request.form.get('num_agents', 3))
-            num_items = int(request.form.get('num_items', 5))
+        agents_count = int(request.form.get('agents_count', 2))
+        items_count = int(request.form.get('items_count', 3))
 
-            num_agents = max(2, min(num_agents, 26))
-            num_items = max(2, min(num_items, 20))
+        agents = [f"Agent{i+1}" for i in range(agents_count)]
+        items = [f"Item{j+1}" for j in range(items_count)]
 
-            agents = [string.ascii_uppercase[i] for i in range(num_agents)]
-            items = [str(i + 1) for i in range(num_items)]
+        valuations = {
+            agent: {item: round(random.uniform(0, 10), 1) for item in items}
+            for agent in agents
+        }
 
-            valuations = {
-                agent: {item: random.randint(1, 15) for item in items}
-                for agent in agents
-            }
+        session['preview_agents'] = agents
+        session['preview_items'] = items
+        session['preview_valuations'] = valuations
 
-            session['valuations'] = valuations
-            return redirect(url_for('result'))
+        return render_template("random_input.html", agents=agents, items=items, valuations=valuations)
 
-        except Exception as e:
-            return render_template('random_input.html', error=f"שגיאה: {e}")
+    return render_template("random_setup.html")
 
-    return render_template('random_input.html')
 
+@app.route('/random/run', methods=['POST'])
+def run_random_input():
+    valuations = session.get('preview_valuations')
+    if not valuations:
+        return redirect(url_for('random_input_page'))
+
+    session['valuations'] = valuations
+    return redirect(url_for('result'))
 @app.route('/result')
 def result():
     try:
