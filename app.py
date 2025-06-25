@@ -64,9 +64,9 @@ def random_input_page():
         items = [f"Item{j+1}" for j in range(items_count)]
 
         valuations = {
-            agent: {item: round(random.uniform(0, 10), 1) for item in items}
-            for agent in agents
-        }
+             agent: {item: random.randint(1, 50) for item in items}
+             for agent in agents
+            }
 
         session['preview_agents'] = agents
         session['preview_items'] = items
