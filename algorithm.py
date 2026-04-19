@@ -4,12 +4,10 @@ from io import StringIO
 import logging
 
 def run_algorithm(valuations):
-    # איסוף לוגים מהאלגוריתם
     log_stream = StringIO()
     logger = logging.getLogger("fairpyx.algorithms.markakis_psomas")
     logger.setLevel(logging.INFO)
 
-    # הוספת handler חדש אם לא קיים
     if not any(isinstance(h, logging.StreamHandler) and h.stream == log_stream for h in logger.handlers):
         stream_handler = logging.StreamHandler(log_stream)
         stream_handler.setLevel(logging.INFO)
