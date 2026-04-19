@@ -129,3 +129,4 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 ## Acknowledgments
 
 This project implements the fair allocation algorithm described in the seminal work by Elias Markakis and Christos Psomas on worst-case analysis of indivisible goods allocation.
+**Try the application online**: [https://ibrahemhurani.csariel.xyz/](https://ibrahemhurani.csariel.xyz/)
